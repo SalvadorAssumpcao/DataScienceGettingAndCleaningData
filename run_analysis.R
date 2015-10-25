@@ -2,9 +2,14 @@
 ##  placed on its own function primarily so any intermediary variables
 ##  are cleared when the function returns 
 ## 
-## No input parameters, but it assumes the current directory is the root folder
-##  of the unzipped data
+## No input parameters, but it assumes the folder containing the 
+##  original data (named "UCI HAR DataSet") is a subfolder of the
+##  current directory
 buildTidyData <- function () {
+    ## Saves the current dir and switches to original data folder
+    saved_current_dir <- getwd();
+    setwd("./UCI HAR DataSet")
+    
     ## Read features and activity labels
     ## The features and activity labels are read in as strings, 
     ##  so we can more easily manipulate them before using as factors
@@ -20,7 +25,7 @@ buildTidyData <- function () {
     ## Initially we read subject, feature values(i.e. "x") 
     ##  and activity values (i.e. "y") into separate data frames
     subjects_data <- read.table("./train/subject_train.txt", 
-                                col.names = c("SubjectId"))
+                                col.names = c("subjectid"))
     features_data <- read.table("./train/X_train.txt")
     activity_data <- read.table("./train/y_train.txt", 
                                 col.names = c("ActivityId"))
@@ -28,12 +33,15 @@ buildTidyData <- function () {
     ## Read the test data, already merging with the training data
     subjects_data <- rbind(subjects_data, 
                            read.table("./test/subject_test.txt", 
-                                      col.names = c("SubjectId")))
+                                      col.names = c("subjectid")))
     features_data <- rbind(features_data, read.table("./test/X_test.txt"))
     activity_data <- rbind(activity_data, 
                            read.table("./test/y_test.txt", 
                                       col.names = c("ActivityId")))
   
+    ## Restores working directory, after all data is read in
+    setwd(saved_current_dir)
+    
     ## Cleaning up and tidying up the data
     
     ## Before we start manipulating the features names to make them more tidy,
@@ -50,7 +58,7 @@ buildTidyData <- function () {
     wantedFeatures <- grepl("mean()", features_labels_data$Name, fixed=TRUE) | 
                       grepl("std()", features_labels_data$Name, fixed=TRUE)
     
-    ## Perform a series of pipelined to features and activity names,
+    ## Perform a series of pipelined changes to features and activity names,
     ##  to get them formatted as we want, as per codebook
     features_labels_data$Name <- features_labels_data$Name %>%
                                  gsub("()", "", ., fixed=TRUE) %>%
@@ -65,28 +73,36 @@ buildTidyData <- function () {
     ## Apply the feature names to the columns/variables of the features data
     colnames(features_data) <- features_labels_data$Name
     
-    ## Filter the features we want and not duplicated
+    ## Filter the features
     features_data <- features_data[wantedFeatures & !duplicatedFeatures]
     
     ##  Build the consolidated data, by incorporating both the subjects,
     ##   activity and features data in a single frame
     ##  For activity data, convert the id in the original data to
     ##   the descriptive activity names, as a factor
-    Activity <- as.factor(
+    activity <- as.factor(
                       activity_labels_data$Name[
                           match(activity_data$ActivityId, 
                                 activity_labels_data$Id)
                       ])
-    consolidated_data <- cbind(subjects_data, Activity, features_data)
+    consolidated_data <- cbind(subjects_data, activity, features_data)
     
     ## Finally, build the tidy_data we want, and return it
     ## We group by subject and activity and summarize the mean 
-    ##  of each feature for each combo (subject, activity)
+    ##  of each feature for each combination(subject, activity)
     tidy_data<-summarize_each(
-                  group_by(consolidated_data, SubjectId, Activity), 
+                  group_by(consolidated_data, subjectid, activity), 
                   c('mean'))
 }
 
 ## The actual main script
-tidy_data <- buildTidyData()
-write.table(tidy_data, "tidydata.txt", row.names = FALSE)
+
+## First make sure dplyr is installed
+if(!("dplyr" %in% installed.packages()[,"Package"])) {
+    install.packages("dplyr", quiet = TRUE)
+}
+require(dplyr, quietly = TRUE)
+
+## Now, build tidyData and write it to 
+tidyData <- buildTidyData()
+write.table(tidyData, "tidydata.txt", row.names = FALSE)
