@@ -68,8 +68,8 @@ Code Book
 
 - *activity*
 
-    A factor identifying the activity in the experiment
-    Possible values:
+    A factor identifying the activity in the experiment. Possible values:
+
         laying
         sitting
         standing

@@ -9,7 +9,7 @@ Contents
 - CodeBook.md - code book for the produced data set
 - tidydata.txt - a text representation of the produced tidy data set, obtained by using write.table(...)
 
-    NOTE - this is the same file submitted through the Coursera web interface
+    NOTE: this is the same file submitted through the Coursera web interface
 
 Data Transformation
 ===================
@@ -87,7 +87,7 @@ Summary of the script processing of the data
 
 7. Generate consolidated_data by column binding subjects_data and activity to the filtered features_data 
 
-    The resulting data frame has the 10299 rows/experiments. And 66 columns. For each row we have the subjectid (as integer), activity (in a descriptive form) and 66 feature columns. This is already a tidy data set, but the requested data still needs some additional processing
+    The resulting data frame has the 10299 rows/experiments and 66 columns. For each row we have the subjectid (as integer), activity (in a descriptive form) and 66 feature columns. This is already a tidy data set, but the requested data still needs some additional processing
 
 8. consolidated_data is grouped by subject and activity, using group_by
 
