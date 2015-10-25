@@ -62,11 +62,11 @@ Applying 1. and 2. to the previous examples of original feature names results in
 
 Code Book
 =========
-- subjectid
+- *subjectid*
 
     An integer in the interval [1, 30] identifying a specific volunteer/ subject in the study
 
-- activity
+- *activity*
 
     A factor identifying the activity in the experiment
     Possible values:
@@ -77,87 +77,86 @@ Code Book
         walkingdownstairs
         walkingupstairs
 
-- features
+- *features*
 
-    Averages of the corresponding features in the original data, for each combination subjectid/ activity
+    Our features are averages of the corresponding features in the original data, for each combination subjectid/activity
 
     The original features were normalized in the [-1, 1] interval, and therefore unitless
 
     The final data features, being averages, will also have values in the [-1, 1] interval, but no futher normalization has been done
 
-    The complete list of all 66 feature names is below. The abbreviations used in the final feature names are explained at the end of the file
+    The complete list of all 66 feature names is below. An explanation of the abbreviations used in the final feature names follows
 
-    tBodyAccMeanX
-    tBodyAccMeanY
-    tBodyAccMeanZ
-    tBodyAccStdX
-    tBodyAccStdY
-    tBodyAccStdZ
-    tGravityAccMeanX
-    tGravityAccMeanY
-    tGravityAccMeanZ
-    tGravityAccStdX
-    tGravityAccStdY
-    tGravityAccStdZ
-    tBodyAccJerkMeanX
-    tBodyAccJerkMeanY
-    tBodyAccJerkMeanZ
-    tBodyAccJerkStdX
-    tBodyAccJerkStdY
-    tBodyAccJerkStdZ
-    tBodyGyroMeanX
-    tBodyGyroMeanY
-    tBodyGyroMeanZ
-    tBodyGyroStdX
-    tBodyGyroStdY
-    tBodyGyroStdZ
-    tBodyGyroJerkMeanX
-    tBodyGyroJerkMeanY
-    tBodyGyroJerkMeanZ
-    tBodyGyroJerkStdX
-    tBodyGyroJerkStdY
-    tBodyGyroJerkStdZ
-    tBodyAccMagMean
-    tBodyAccMagStd
-    tGravityAccMagMean
-    tGravityAccMagStd
-    tBodyAccJerkMagMean
-    tBodyAccJerkMagStd
-    tBodyGyroMagMean
-    tBodyGyroMagStd
-    tBodyGyroJerkMagMean
-    tBodyGyroJerkMagStd
-    fBodyAccMeanX
-    fBodyAccMeanY
-    fBodyAccMeanZ
-    fBodyAccStdX
-    fBodyAccStdY
-    fBodyAccStdZ
-    fBodyAccJerkMeanX
-    fBodyAccJerkMeanY
-    fBodyAccJerkMeanZ
-    fBodyAccJerkStdX
-    fBodyAccJerkStdY
-    fBodyAccJerkStdZ
-    fBodyGyroMeanX
-    fBodyGyroMeanY
-    fBodyGyroMeanZ
-    fBodyGyroStdX
-    fBodyGyroStdY
-    fBodyGyroStdZ
-    fBodyAccMagMean
-    fBodyAccMagStd
-    fBodyBodyAccJerkMagMean
-    fBodyBodyAccJerkMagStd
-    fBodyBodyGyroMagMean
-    fBodyBodyGyroMagStd
-    fBodyBodyGyroJerkMagMean
-    fBodyBodyGyroJerkMagStd
+        tBodyAccMeanX
+        tBodyAccMeanY
+        tBodyAccMeanZ
+        tBodyAccStdX
+        tBodyAccStdY
+        tBodyAccStdZ
+        tGravityAccMeanX
+        tGravityAccMeanY
+        tGravityAccMeanZ
+        tGravityAccStdX
+        tGravityAccStdY
+        tGravityAccStdZ
+        tBodyAccJerkMeanX
+        tBodyAccJerkMeanY
+        tBodyAccJerkMeanZ
+        tBodyAccJerkStdX
+        tBodyAccJerkStdY
+        tBodyAccJerkStdZ
+        tBodyGyroMeanX
+        tBodyGyroMeanY
+        tBodyGyroMeanZ
+        tBodyGyroStdX
+        tBodyGyroStdY
+        tBodyGyroStdZ
+        tBodyGyroJerkMeanX
+        tBodyGyroJerkMeanY
+        tBodyGyroJerkMeanZ
+        tBodyGyroJerkStdX
+        tBodyGyroJerkStdY
+        tBodyGyroJerkStdZ
+        tBodyAccMagMean
+        tBodyAccMagStd
+        tGravityAccMagMean
+        tGravityAccMagStd
+        tBodyAccJerkMagMean
+        tBodyAccJerkMagStd
+        tBodyGyroMagMean
+        tBodyGyroMagStd
+        tBodyGyroJerkMagMean
+        tBodyGyroJerkMagStd
+        fBodyAccMeanX
+        fBodyAccMeanY
+        fBodyAccMeanZ
+        fBodyAccStdX
+        fBodyAccStdY
+        fBodyAccStdZ
+        fBodyAccJerkMeanX
+        fBodyAccJerkMeanY
+        fBodyAccJerkMeanZ
+        fBodyAccJerkStdX
+        fBodyAccJerkStdY
+        fBodyAccJerkStdZ
+        fBodyGyroMeanX
+        fBodyGyroMeanY
+        fBodyGyroMeanZ
+        fBodyGyroStdX
+        fBodyGyroStdY
+        fBodyGyroStdZ
+        fBodyAccMagMean
+        fBodyAccMagStd
+        fBodyBodyAccJerkMagMean
+        fBodyBodyAccJerkMagStd
+        fBodyBodyGyroMagMean
+        fBodyBodyGyroMagStd
+        fBodyBodyGyroJerkMagMean
+        fBodyBodyGyroJerkMagStd
 
     Final data feature names are composed of abbreviations that identify the defining characteristics of each feature:
-
-        1. "t" or "f" in the first character, for time and frequency domain features, respectively
-        2. "Body" vs "Gravity" to distinguish - especially in linear acceleration features - body motion vs gravity components
-        3. "Acc", "AccJerk", "Gyro", "GyroJerk" to identify respectively: linear acceleration, its derivative in time, angular velocity and its derivative in time
-        4. "Mean" or "Std" to identify mean or standard deviation
-        5. "X", "Y", "Z" or "Mag" to identify features calculated along the X, Y, Z axis or Euclidian magnitudes respectively
+    1. "t" or "f" in the first character, for time and frequency domain features, respectively
+    2. "Body" vs "Gravity" to distinguish - especially in linear acceleration features - body motion vs gravity components
+    3. "Acc", "AccJerk", "Gyro", "GyroJerk" to identify respectively: linear acceleration, its derivative in time, angular velocity and its derivative in time
+    4. "Mean" or "Std" to identify mean or standard deviation
+    5. "X", "Y", "Z" or "Mag" to identify features calculated along the X, Y, Z axis or Euclidian magnitudes respectively
