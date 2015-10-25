@@ -27,9 +27,9 @@ Data Transformation
 
     Produced Data:
         A tidy data set, after applying the following transformations:
-            - The 561 features are filtered, so we only keep the ones that are mean or standard deviation. This reduced the number of features to 66.
-            - Each of the 66 kept features is averaged for each combination of subject and activity. This reduces the number of rows from 10299 to 180 (30 subjects times 6 activities)
-            - A final data set with the 180 rows and 68 columns - subject, actvity plus 66 features - that meets the tidy data requirements in a wide data format: each observation in a row, each variable measured on its own column, descriptive names for the columns and string values
+            - The 561 features are filtered, so we only keep the ones that are mean or standard deviation. This reduces the number of features to 66.
+            - Each of the 66 kept features is averaged for each combination of subject and activity. This reduces the number of rows from 10299 to 180 (30 subjects x 6 activities)
+            - The final data set has 180 rows and 68 columns - subject, actvity plus 66 features - and meets the tidy data requirements in a wide data format: each observation in a row, each variable measured on its own column, descriptive names for the columns and string values
 
 
 Steps to run the script
