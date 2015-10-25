@@ -62,11 +62,11 @@ Applying 1. and 2. to the previous examples of original feature names results in
 
 Code Book
 =========
-subjectid
+- subjectid
 
     An integer in the interval [1, 30] identifying a specific volunteer/ subject in the study
 
-activity
+- activity
 
     A factor identifying the activity in the experiment
     Possible values:
@@ -77,7 +77,7 @@ activity
         walkingdownstairs
         walkingupstairs
 
-features
+- features
 
     Averages of the corresponding features in the original data, for each combination subjectid/ activity
 
